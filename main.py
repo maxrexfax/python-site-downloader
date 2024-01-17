@@ -53,11 +53,15 @@ def download_files(driver):
         current_file_name = text_in_url
         # print("Extension:" + current_file_extension)
         # ниже проверка только по совпадению расширения файла
-        if current_file_extension in list_of_downloaded_extensions:
-            current_file_name = current_file_name.replace('%20', ' ')
-            # print("Now saving file:" + current_file_name)
-            current_file = requests.get(current_url_href)
-            open(folder_to_save + current_file_name, 'wb').write(current_file.content)
+        try:
+            if current_file_extension in list_of_downloaded_extensions:
+                current_file_name = current_file_name.replace('%20', ' ')
+                print("Now saving file:" + current_file_name)
+                current_file = requests.get(current_url_href)
+                open(folder_to_save + current_file_name, 'wb').write(current_file.content)
+        except Exception as e:
+            print("Exception With url:" + current_url_href + " and file:" + folder_to_save + current_file_name)
+            print(e)
     ArrOfCouplesToSaveFromAndWhere.remove((url_to_files, folder_to_save))
 
 def main_work(driver):
