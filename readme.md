@@ -3,3 +3,4 @@
 ```selenium==4.19.0```
 - in console 
 ```pip install selenium```
+```pip install selenium --break-system-packages```
